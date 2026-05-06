@@ -34,7 +34,7 @@ def get_products(db: Session = Depends(get_db)):
 
 # Create product
 @app.post("/product")
-def create_product(product: Product, db: Session = Depends(get_db)):
+def add_product(product: Product, db: Session = Depends(get_db)):
     existing = db.query(models.ProductDB).filter(models.ProductDB.id == product.id).first()
     if existing:
         raise HTTPException(status_code=400, detail="Product ID already exists")
